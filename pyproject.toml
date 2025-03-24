@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "petshoop-leo"
+version = "0.1.0"
+description = ""
+authors = ["Davidson <deivisonj1@hotmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^5.1.7"
+python-decouple = "^3.8"
+dj-database-url = "^2.3.0"
+sentry-sdk = "^2.22.0"
+django-s3-folder-storage = "^0.5"
+pytest = "^8.3.5"
+psycopg2 = "^2.9.10"
+collectfast = "^2.2.0"
+flake8 = "^7.1.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
