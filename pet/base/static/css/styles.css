@@ -1,191 +1,126 @@
-/* Estilo básico para o body */
-body {
-  font-family: 'Arial', sans-serif;
+/* Resetando margens e padding */
+* {
   margin: 0;
   padding: 0;
-  background-color: #FFFFFF; /* Branco */
-  color: #228B22; /* Verde */
-  transition: background-color 0.3s ease; /* Transição suave para mudanças de cor */
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
 
-/* Cabeçalho */
-header {
-  background-color: #228B22; /* Verde */
-  color: #FFFFFF; /* Branco */
-  padding: 20px 0;
+html, body {
+  overflow-x: hidden; /* Impede rolagem horizontal */
+  width: 100%;
+  background-color: #f8f9fa;
+  color: #333;
   text-align: center;
 }
 
-/* Navegação */
+/* Navbar */
 nav {
-  display: flex;
-  justify-content: center;
-  background-color: #228B22; /* Verde */
-  padding: 10px 0;
-}
-
-nav a {
-  color: #FFFFFF; /* Branco */
-  text-decoration: none;
-  margin: 0 15px;
-  font-weight: bold;
-  transition: color 0.3s ease; /* Transição suave para hover */
-}
-
-nav a:hover {
-  color: #FFFF00; /* Amarelo */
-}
-
-/* Seção Hero */
-.hero {
-  background: url('https://via.placeholder.com/1200x400') no-repeat center center/cover;
-  color: #FFFFFF; /* Branco */
-  padding: 100px 20px;
-  text-align: center;
-}
-
-.hero h1 {
-  font-size: 3em;
-  margin-bottom: 20px;
-  animation: fadeIn 2s ease-out; /* Animação de fade-in */
-}
-
-.hero p {
-  font-size: 1.2em;
-  margin-bottom: 20px;
-}
-
-.hero button {
-  background-color: #228B22; /* Verde */
-  color: #FFFFFF; /* Branco */
-  border: none;
-  padding: 10px 20px;
-  font-size: 1em;
-  cursor: pointer;
-  transition: background-color 0.3s ease; /* Efeito de transição */
-}
-
-.hero button:hover {
-  background-color: #32CD32; /* Verde mais claro */
-}
-
-/* Animações de fade-in */
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-/* Serviços e Produtos */
-.services, .products, .about, .contact {
-  padding: 50px 20px;
-  text-align: center;
-  transition: transform 0.3s ease; /* Efeito suave ao passar o mouse */
-}
-
-/* Efeito de zoom nas imagens */
-.service-item img, .product-item img {
-  max-width: 100%;
-  height: auto;
-  transition: transform 0.3s ease; /* Animação de zoom */
-}
-
-.service-item img:hover, .product-item img:hover {
-  transform: scale(1.1); /* Aumenta o tamanho da imagem */
-}
-
-/* Itens de serviço e produto */
-.service-item, .product-item {
-  display: inline-block;
-  width: 30%;
-  margin: 1%;
-  background-color: #F0F8FF; /* Cor de fundo clara */
-  color: #228B22; /* Verde */
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(34, 139, 34, 0.5); /* Sombra verde */
-  transition: transform 0.3s ease; /* Animação ao passar o mouse */
-}
-
-.service-item:hover, .product-item:hover {
-  transform: translateY(-10px); /* Animação de elevação */
-}
-
-/* Rodapé */
-footer {
-  background-color: #228B22; /* Verde */
-  color: #FFFFFF; /* Branco */
-  text-align: center;
-  padding: 20px 0;
-}
-
-footer a {
-  color: #FFFF00; /* Amarelo */
-  text-decoration: none;
-}
-
-footer a:hover {
-  text-decoration: underline;
-  color: #32CD32; /* Verde mais claro */
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-  .service-item, .product-item {
-      width: 100%;
-      margin: 10px 0;
-  }
-}
-
-/* Rodapé */
-footer {
-  background-color: #228B22; /* Verde */
-  color: #FFFFFF; /* Branco */
-  padding: 20px 0;
-  text-align: center;
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-footer .footer-content {
-  max-width: 1200px;
-  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  padding: 0 20px;
+  background: #ff4500;
+  padding: 15px 20px;
+  width: 100%;
+  position: relative;
 }
 
-footer p {
-  font-size: 1em;
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  font-weight: bold;
 }
 
-footer .social-media {
+.nav-links {
   display: flex;
   gap: 15px;
 }
 
-footer .social-icon {
-  font-size: 1.5em;
-  color: #FFFF00; /* Amarelo */
-  transition: color 0.3s ease;
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
 }
 
-footer .social-icon:hover {
-  color: #32CD32; /* Verde mais claro */
+/* Hero section */
+.hero {
+  padding: 50px 20px;
+  background: #ffdfba;
 }
 
-footer .back-to-top {
-  font-size: 1.2em;
-  color: #FFFF00; /* Amarelo */
-  text-decoration: none;
-  transition: color 0.3s ease;
+.hero h1 {
+  margin-top: 20px;
+  font-size: 28px;
 }
 
-footer .back-to-top:hover {
-  color: #32CD32; /* Verde mais claro */
+.hero .btn {
+  background: #ff4500;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: 10px;
 }
 
-/* Efeito de animação para o footer */
-footer:hover {
-  background-color: #F0F8FF; /* Cor de fundo clara ao passar o mouse */
+/* Seções gerais */
+.services, .products, .about, .contact {
+  padding: 50px 20px;
 }
+
+/* Itens de serviço e produtos */
+.service-item, .product-item {
+  display: inline-block;
+  width: 100%;
+  max-width: 300px;
+  margin: 10px;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Rodapé */
+footer {
+  background: #222;
+  color: white;
+  padding: 15px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none; /* Oculta os links por padrão */
+    flex-direction: column;
+    width: 100%;
+    background: #ff4500;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    padding: 10px 0;
+    text-align: center;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 10px;
+    width: 100%;
+  }
+
+  .nav-links.active {
+    display: flex; /* Exibe os links quando a classe 'active' é ativada */
+  }
+}
+
