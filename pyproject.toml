@@ -12,11 +12,18 @@ python-decouple = "^3.8"
 dj-database-url = "^2.3.0"
 sentry-sdk = "^2.22.0"
 django-s3-folder-storage = "^0.5"
-pytest = "^8.3.5"
 psycopg2 = "^2.9.10"
 collectfast = "^2.2.0"
 flake8 = "^7.1.2"
+pytest = "^8.3.5"
+pillow = "^11.1.0"
 
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.3"
+pytest-django = "^4.9.0"
+pytest-cov = "^5.0.0"
+ruff = "^0.6.5"
+taskipy = "^1.13.0"
 
 [build-system]
 requires = ["poetry-core"]

@@ -124,3 +124,17 @@ footer {
   }
 }
 
+@font-face {
+  font-family: 'Amorlate';
+  src: url('../fonts/Amorlate.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Aplicando a fonte no site */
+body {
+  font-family: 'Amorlate', sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  text-align: center;
+}

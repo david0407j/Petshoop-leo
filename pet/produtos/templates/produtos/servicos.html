@@ -1,0 +1,72 @@
+<h2 class="titulo-servicos">Serviços</h2>
+<div class="lista-servicos">
+    {% for servico in servicos %}
+        <div class="servico">
+            {% if servico.imagem %}
+                <img src="{{ servico.imagem.url }}" alt="{{ servico.nome }}" class="servico-imagem">
+            {% endif %}
+            <h3 class="servico-nome">{{ servico.nome }}</h3>
+            <p class="servico-preco">R$ {{ servico.preco }}</p>
+            {% if servico.descricao %}
+                <p class="servico-descricao">{{ servico.descricao }}</p>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+
+<style>
+    .titulo-servicos {
+        font-size: 24px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .lista-servicos {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .servico {
+        background: #fff;
+        border-radius: 10px;
+        padding: 15px;
+        width: 250px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        overflow: hidden;  /* Garante que nada saia do limite da div */
+    }
+
+    .servico-imagem {
+        width: 100%;            /* Garante que a largura da imagem ocupe 100% do contêiner */
+        height: 200px;          /* Altura fixa para garantir que todas as imagens tenham o mesmo tamanho */
+        object-fit: cover;      /* Corta a imagem para manter a proporção sem distorcer */
+        border-radius: 8px;     /* Borda arredondada */
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transição suave */
+    }
+
+    .servico-imagem:hover {
+        transform: scale(1.1);  /* Aumenta um pouco a imagem ao passar o mouse */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);  /* Sombra mais forte quando o mouse passa */
+    }
+
+    .servico-nome {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .servico-preco {
+        color: #ff4500;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .servico-descricao {
+        font-size: 14px;
+        color: #555;
+        margin-top: 5px;
+    }
+</style>
+
