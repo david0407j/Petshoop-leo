@@ -4,90 +4,120 @@
 {% block title %}PetShop Leo - Produtos{% endblock %}
 
 {% block body %}
-<div class="produtos-container">
-    <div class="titulo-container">
-        <h1 class="titulo-principal">Nossos Produtos</h1>
-        <p class="subtitulo">A melhor qualidade para o seu pet</p>
+<section class="products-page">
+    <!-- Cabeçalho da Página -->
+    <div class="products-header">
+        <div class="container">
+            <h1 class="products-title">Nossos Produtos</h1>
+            <p class="products-subtitle">A melhor qualidade para o seu pet</p>
+        </div>
     </div>
-    
-    <div class="lista-produtos">
-        {% for produto in produtos %}
-            <div class="produto-card">
-                {% if produto.imagem %}
-                    <div class="produto-imagem-container">
-                        <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}" class="produto-imagem">
+
+    <!-- Lista de Produtos -->
+    <div class="container">
+        <div class="products-grid">
+            {% for produto in produtos %}
+                <div class="product-card">
+                    <div class="product-image-container">
+                        {% if produto.imagem %}
+                            <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}" class="product-image">
+                        {% else %}
+                            <img src="{% static 'img/default-product.jpg' %}" alt="Produto sem imagem" class="product-image">
+                        {% endif %}
+                        <div class="product-badge">Disponível</div>
                     </div>
-                {% else %}
-                    <div class="produto-imagem-container">
-                        <img src="{% static 'images/sem-imagem.jpg' %}" alt="Sem imagem" class="produto-imagem">
-                    </div>
-                {% endif %}
-                <div class="produto-info">
-                    <h3 class="produto-nome">{{ produto.nome }}</h3>
-                    <p class="produto-preco">R$ {{ produto.preco|floatformat:2 }}</p>
-                    {% if produto.descricao %}
-                        <p class="produto-descricao">{{ produto.descricao }}</p>
-                    {% endif %}
-                    <a href="https://wa.me/31999877987?text=Olá,%20quero%20agendar%20um%20serviço%20para%20meu%20pet!" 
-   target="_blank" 
-   class="btn-agendar" 
-   style="display: inline-block; padding: 10px 20px; background-color: #25D366; color: #fff; font-size: 1.2em; text-decoration: none; border-radius: 5px;">
-   Comprar
-</a>
- <div class="produto-btn-container">
+                    
+                    <div class="product-content">
+                        <h3 class="product-name">{{ produto.nome }}</h3>
+                        <p class="product-price">R$ {{ produto.preco|floatformat:2 }}</p>
+                        
+                        {% if produto.descricao %}
+                            <p class="product-description">{{ produto.descricao }}</p>
+                        {% endif %}
+                        
+                        <div class="product-actions">
+                            <a href="https://wa.me/31999877987?text=Olá,%20quero%20comprar%20{{ produto.nome|urlencode }}%20por%20R$%20{{ produto.preco|floatformat:2 }}" 
+                               target="_blank" 
+                               class="btn btn-buy">
+                               <i class="fab fa-whatsapp"></i> Comprar
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        {% empty %}
-            <p class="sem-produtos">Nenhum produto disponível no momento.</p>
-        {% endfor %}
+            {% empty %}
+                <div class="no-products">
+                    <i class="fas fa-box-open"></i>
+                    <p>Nenhum produto disponível no momento.</p>
+                    <a href="" class="btn btn-contact">Entrar em contato</a>
+                </div>
+            {% endfor %}
+        </div>
     </div>
-</div>
+</section>
 
 <style>
-    /* Estilos Gerais */
-    .produtos-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px 60px;
+    /* ===== VARIÁVEIS ===== */
+    :root {
+        --primary: #ff6b00;
+        --primary-light: #ff8b33;
+        --secondary: #2c3e50;
+        --accent: #25D366;
+        --accent-hover: #128C7E;
+        --light: #f8f9fa;
+        --dark: #333;
+        --gray: #95a5a6;
+        --white: #ffffff;
+        --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        --shadow-hover: 0 15px 30px rgba(0, 0, 0, 0.12);
     }
 
-    /* Container do Título com Espaçamento Aumentado */
-    .titulo-container {
-        text-align: center;
-        margin: 100px 0 50px;
+    /* ===== ESTILOS GERAIS ===== */
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
         padding: 0 20px;
     }
 
-    .titulo-principal {
+    /* ===== CABEÇALHO ===== */
+    .products-header {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('{% static "img/products-bg.jpg" %}');
+        background-size: cover;
+        background-position: center;
+        padding: 100px 0;
+        text-align: center;
+        color: var(--white);
+        margin-bottom: 50px;
+    }
+
+    .products-title {
         font-size: 3rem;
-        color: #080808cf;
-        margin-bottom: 20px;
         font-weight: 700;
-        letter-spacing: -1px;
+        margin-bottom: 15px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
 
-    .subtitulo {
+    .products-subtitle {
         font-size: 1.4rem;
-        color: hsl(0, 0%, 0%);
-        margin: 0 auto;
         max-width: 600px;
+        margin: 0 auto;
         line-height: 1.6;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     }
 
-    /* Grid de Produtos */
-    .lista-produtos {
+    /* ===== GRADE DE PRODUTOS ===== */
+    .products-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: 30px;
+        padding: 20px 0;
     }
 
-    /* Cards de Produtos */
-    .produto-card {
-        background: white;
+    /* ===== CARD DE PRODUTO ===== */
+    .product-card {
+        background: var(--white);
         border-radius: 12px;
         overflow: hidden;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        box-shadow: var(--shadow);
         transition: all 0.3s ease;
         border: 1px solid #eee;
         display: flex;
@@ -95,148 +125,160 @@
         height: 100%;
     }
 
-    .produto-card:hover {
+    .product-card:hover {
         transform: translateY(-8px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        box-shadow: var(--shadow-hover);
     }
 
-    /* Container da Imagem - Tamanho Fixo */
-    .produto-imagem-container {
+    .product-image-container {
         height: 250px;
         overflow: hidden;
         position: relative;
     }
 
-    .produto-imagem {
+    .product-image {
         width: 100%;
         height: 100%;
         object-fit: cover;
         transition: transform 0.5s ease;
     }
 
-    .produto-card:hover .produto-imagem {
+    .product-card:hover .product-image {
         transform: scale(1.05);
     }
 
-    /* Informações do Produto */
-    .produto-info {
+    .product-badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: var(--accent);
+        color: var(--white);
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: bold;
+    }
+
+    /* ===== CONTEÚDO DO PRODUTO ===== */
+    .product-content {
         padding: 25px;
         flex: 1;
         display: flex;
         flex-direction: column;
     }
 
-    .produto-nome {
+    .product-name {
         font-size: 1.5rem;
-        color: #2c3e50;
+        color: var(--secondary);
         margin-bottom: 10px;
         font-weight: 600;
     }
 
-    .produto-preco {
+    .product-price {
         font-size: 1.4rem;
-        color: #e74c3c;
+        color: var(--primary);
         font-weight: bold;
         margin-bottom: 15px;
     }
 
-    .produto-descricao {
-        color: #555;
+    .product-description {
+        color: var(--dark);
         line-height: 1.6;
         margin-bottom: 20px;
         flex: 1;
     }
 
-    /* Botão */
-    .produto-btn-container {
-        margin-top: auto;
+    /* ===== BOTÕES ===== */
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 12px 25px;
+        border-radius: 6px;
+        font-weight: 600;
+        text-align: center;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
     }
 
-    .btn-comprar {
-        display: inline-block;
-        background: hsl(140, 97%, 45%);
-        color: white;
-        padding: 12px 25px;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 1.1rem;
-        font-weight: 500;
-        transition: all 0.3s ease;
+    .btn-buy {
+        background-color: var(--accent);
+        color: var(--white);
         width: 100%;
     }
 
-    .btn-comprar:hover {
-        background: #04e927;
+    .btn-buy:hover {
+        background-color: var(--accent-hover);
         transform: translateY(-2px);
     }
 
-    /* Mensagem sem produtos */
-    .sem-produtos {
-        text-align: center;
-        grid-column: 1 / -1;
-        color: #7f8c8d;
-        font-size: 1.3rem;
-        margin: 50px 0;
+    .btn-contact {
+        background-color: var(--primary);
+        color: var(--white);
+        margin-top: 20px;
     }
 
-    /* Responsividade */
+    .btn-contact:hover {
+        background-color: var(--primary-light);
+    }
+
+    /* ===== SEM PRODUTOS ===== */
+    .no-products {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 50px 0;
+        color: var(--gray);
+    }
+
+    .no-products i {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        color: var(--primary);
+    }
+
+    .no-products p {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+    }
+
+    /* ===== RESPONSIVIDADE ===== */
     @media (max-width: 992px) {
-        .titulo-container {
-            margin: 80px 0 40px;
+        .products-grid {
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         }
         
-        .titulo-principal {
-            font-size: 2.5rem;
-        }
-        
-        .subtitulo {
-            font-size: 1.2rem;
-        }
-        
-        .lista-produtos {
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 25px;
-        }
-        
-        .produto-imagem-container {
+        .product-image-container {
             height: 220px;
         }
     }
 
     @media (max-width: 768px) {
-        .titulo-container {
-            margin: 60px 0 30px;
+        .products-header {
+            padding: 80px 0;
         }
         
-        .titulo-principal {
-            font-size: 2.2rem;
+        .products-title {
+            font-size: 2.5rem;
         }
         
-        .produto-info {
-            padding: 20px;
+        .products-subtitle {
+            font-size: 1.2rem;
         }
     }
 
     @media (max-width: 576px) {
-        .titulo-container {
-            margin: 50px 0 25px;
-        }
-        
-        .titulo-principal {
-            font-size: 2rem;
-        }
-        
-        .subtitulo {
-            font-size: 1.1rem;
-        }
-        
-        .lista-produtos {
+        .products-grid {
             grid-template-columns: 1fr;
-            gap: 20px;
         }
         
-        .produto-imagem-container {
+        .products-title {
+            font-size: 2.2rem;
+        }
+        
+        .product-image-container {
             height: 200px;
         }
     }

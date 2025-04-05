@@ -1,54 +1,115 @@
-
 {% extends 'base/base.html' %}
 {% load static %}
+
 <title>{% block title %}PetShop Leo - Seu Melhor Amigo Merece o Melhor{% endblock title %}</title>
+
 {% block body %}
+<!-- Scripts e Fontes -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <section class="hero" id="home">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<!-- Seção Hero -->
+<section class="hero" id="home">
+    <div class="hero-content">
         <img src="{% static 'img/shop.ico' %}" alt="Cachorro e gato felizes" class="hero-img">
-        <h1>Bem-vindo ao PetShop</h1>
-        <p>Oferecemos os melhores produtos e serviços para o seu pet.</p>
-        <button class="btn">Conheça Nossos Serviços</button>
-    </section>
+        <h1>Bem-vindo ao PetShop Leo</h1>
+        <p class="hero-text">Oferecemos os melhores produtos e serviços para o seu pet.</p>
+        <div class="hero-buttons">
+            <a href="{% url 'servicos' %}" class="btn">Nossos Serviços</a>
+            <a href="{% url 'produtos' %}" class="btn secondary">Nossos Produtos</a>
+        </div>
+    </div>
+</section>
 
-    <section class="services" id="services">
-        <h2>Nossos Serviços</h2>
-        <div class="service-item">
-            <img src="{% static 'img/banho.ico' %}" alt="Banho e Tosa">
-            <h3>Banho e Tosa</h3>
-            <p>Deixe seu pet limpo e cheiroso com nossos serviços de banho e tosa.</p>
+<!-- Seção Serviços -->
+<section class="services-section" id="services">
+    <div class="container">
+        <h2 class="section-title">Nossos Serviços</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <img src="{% static 'img/banho.ico' %}" alt="Banho e Tosa" class="service-icon">
+                <h3>Banho e Tosa</h3>
+                <p>Deixe seu pet limpo e cheiroso com nossos serviços profissionais.</p>
+                <a href="https://wa.me/31999877987?text=Quero%20agendar%20{{ servico.nome|urlencode }}" class="btn small">Agendar</a>
+            </div>
+            
+            <div class="service-card">
+                <img src="{% static 'img/deavido.ico' %}" alt="Veterinário" class="service-icon">
+                <h3>Veterinário</h3>
+                <p>Cuide da saúde do seu pet com nossos profissionais especializados.</p>
+                <a href="https://wa.me/31999877987?text=Quero%20agendar%20{{ servico.nome|urlencode }}" class="btn small">Agendar</a>
+            </div>
+            
+            <div class="service-card">
+                <img src="{% static 'img/oi2.ico' %}" alt="Hospedagem" class="service-icon">
+                <h3>Hospedagem</h3>
+                <p>Ambiente seguro e confortável para quando você precisar viajar.</p>
+                <a href="https://wa.me/31999877987?text=Quero%20agendar%20{{ servico.nome|urlencode }}" class="btn small">Reservar</a>
+            </div>
         </div>
-        <div class="service-item">
-            <img src="{% static 'img/deavido.ico' %}" alt="Veterinário">
-            <h3>Veterinário</h3>
-            <p>Cuide da saúde do seu pet com nossos profissionais especializados.</p>
-        </div>
-        <div class="service-item">
-            <img src="{% static 'img/oi2.ico' %}" alt="Hospedagem">
-            <h3>Hospedagem</h3>
-            <p>Oferecemos um ambiente seguro e confortável para o seu pet.</p>
-        </div>
-    </section>
+    </div>
+</section>
 
-    <section class="products" id="products">
-        <h2>Nossos Produtos</h2>
-        <div class="product-item">
-            <img src="{% static 'img/275025.ico' %}" alt="Ração">
-            <h3>Ração</h3>
-            <p>As melhores marcas de ração para o seu pet.</p>
+<!-- Seção Produtos -->
+<section class="products-section" id="products">
+    <div class="container">
+        <h2 class="section-title">Nossos Produtos</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="{% static 'img/275025.ico' %}" alt="Ração" class="product-image">
+                <h3>Ração Premium</h3>
+                <p class="price">R$ 89,90</p>
+                <p>As melhores marcas para a nutrição do seu pet.</p>
+                <a href="https://wa.me/31999877987?text=Olá,%20quero%20comprar%20{{ produto.nome|urlencode }}%20por%20R$%20{{ produto.preco|floatformat:2 }}" class="btn small">Comprar</a>
+            </div>
+            
+            <div class="product-card">
+                <img src="{% static 'img/oi.ico' %}" alt="Brinquedos" class="product-image">
+                <h3>Brinquedos</h3>
+                <p class="price">A partir de R$ 19,90</p>
+                <p>Diversão e segurança para seu animal de estimação.</p>
+                <a href="https://wa.me/31999877987?text=Olá,%20quero%20comprar%20{{ produto.nome|urlencode }}%20por%20R$%20{{ produto.preco|floatformat:2 }}" class="btn small">Comprar</a>
+            </div>
+            
+            <div class="product-card">
+                <img src="{% static 'img/61A4-H4WVaL._AC_SL1500_.ico' %}" alt="Acessórios" class="product-image">
+                <h3>Acessórios</h3>
+                <p class="price">A partir de R$ 29,90</p>
+                <p>Coleiras, roupas e itens essenciais.</p>
+                <a href="https://wa.me/31999877987?text=Olá,%20quero%20comprar%20{{ produto.nome|urlencode }}%20por%20R$%20{{ produto.preco|floatformat:2 }}" class="btn small">Comprar</a>
+            </div>
         </div>
-        <div class="product-item">
-            <img src="{% static 'img/oi.ico' %}" alt="Brinquedos">
-            <h3>Brinquedos</h3>
-            <p>Brinquedos divertidos e seguros para o seu pet.</p>
+    </div>
+</section>
+
+<!-- Seção Sobre -->
+<section class="about-section" id="about">
+    <div class="container">
+        <div class="about-content">
+            <div class="about-text">
+                <h2 class="section-title">Sobre Nós</h2>
+                <p>Na <strong>PetShop Leo</strong>, somos apaixonados pelo bem-estar dos seus pets. Com anos de experiência no mercado, nossa missão é oferecer produtos e serviços de alta qualidade.</p>
+                <p>Nosso time é formado por profissionais dedicados e apaixonados por animais, sempre prontos para oferecer o melhor atendimento e garantir a saúde e felicidade do seu pet.</p>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">+500</span>
+                        <span class="stat-label">Clientes Satisfeitos</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">+10</span>
+                        <span class="stat-label">Anos de Experiência</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Dedicação</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image">
+                <img src="{% static 'img/leo .jpg' %}" alt="Equipe PetShop Leo com animais">
+            </div>
         </div>
-        <div class="product-item">
-            <img src="{% static 'img/61A4-H4WVaL._AC_SL1500_.ico' %}" alt="Acessórios">
-            <h3>Acessórios</h3>
-            <p>Coleiras, roupas e muito mais para o seu pet.</p>
-        </div>
-    </section>
-</body>
-</html>
+    </div>
+</section>
 {% endblock body %}

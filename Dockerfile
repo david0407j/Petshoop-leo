@@ -1,4 +1,4 @@
-ARG PYTHON_VERSION=3.11-slim
+ARG PYTHON_VERSION=3.12-slim-bullseye
 
 FROM python:${PYTHON_VERSION}
 
@@ -12,15 +12,17 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /code
-
-WORKDIR /code
-
 RUN pip install poetry
 COPY pyproject.toml poetry.lock /code/
 RUN poetry config virtualenvs.create false
+COPY pyproject.toml poetry.lock ./
 RUN poetry install --only main --no-root --no-interaction
+COPY pos-release.sh /code/pos-release.sh
+RUN chmod +x /code/pos-release.sh
+WORKDIR /code
 COPY . /code
 
 EXPOSE 8000
 
-CMD ["python","manage.py","runserver"]
+# TODO: replace demo.wsgi with <project_name>.wsgi
+CMD ["gunicorn", "--bind", ":8000", "--workers", "2", "pet.wsgi"]
